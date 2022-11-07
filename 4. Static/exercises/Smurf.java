@@ -1,24 +1,36 @@
-package exercises;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Smurf {
 
-	private String name;
+    private String name;
+    public static List<String> existingSmurfs = new ArrayList<>();
 
-	public static Smurf createSmurf(String name) {
-		System.out.println("Creating " + name + " Smurf");
-		return new Smurf(name);
-	}
+    public static Smurf CreateSmurf(String name) {
+        if (existingSmurfs.contains(name)) {
+            if (name.equalsIgnoreCase("Papa"))
+                System.out.printf("No! No! No! We only have one %s Smurf. \n", name);
+            if (name.equalsIgnoreCase("Smurfette"))
+                System.out.printf("No! No! No! We only have one %s. \n", name);
+        }
+        else {
+            System.out.printf("Creating %s Smurf \n", name);
+            existingSmurfs.add(name) ;
+            return new Smurf(name);
+        }
 
-	private Smurf(String name) {
-		this.name = name;
-	}
+        return null;
+    }
 
-	public void printName() {
-		System.out.println("My name is " + name + " Smurf.");
-	}
+    public Smurf(String name) {
+        this.name = name ;
+    }
 
-	public void eat() {
-		System.out.println(name + " Smurf is eating Smurfberries.");
-	}
+    public void printName() {
+        System.out.printf("My name is %s Smurf. \n", name);
+    }
 
+    public void eat(){
+        System.out.printf("%s Smurf is eating Smurfberries.", name);
+    }
 }
